@@ -28,14 +28,14 @@ fecha = datetime.datetime.fromtimestamp(time/1e3).strftime('%Y-%m-%d %H:%M:%S')
 direccion = droid.geocode(lat,lon).result
 
 codigoPostal = direccion[0]["postal_code"]
-print codigoPostal
 codigoPais = direccion[0]["country_code"]
-print codigoPais
 
 url="http://api.openweathermap.org/data/2.5/weather?zip={0},{1}&APPID=dfeea5e604e1948b28652216ad910d11".format(codigoPostal,codigoPais)
 
 response = urllib2.urlopen(url)
 respuesta = response.read()
+response.close()
+
 estadoDelTiempo = json.loads(respuesta)
 
 # es una lista
